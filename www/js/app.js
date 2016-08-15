@@ -80,6 +80,16 @@ var  timeEntries = [
       return undefined;
   }
 
+  function updateTimeEntry(timeEntry){
+      for(var i = 0; i < timeEntries.length; i++){
+        if(timeEntries[i].Id == timeEntry.Id){
+          timeEntries[i] = timeEntry;
+          return;
+        }
+      }
+      return undefined;
+  }
+
 app.controller('TimeEntriesCtrl', function($scope){
 
   $scope.timeEntries = timeEntries;
@@ -87,7 +97,12 @@ app.controller('TimeEntriesCtrl', function($scope){
 
 app.controller('TimeEntryDetailsCtrl', function($scope, $state){
 
-  $scope.timeEntry = getTimeEntry($state.params.timeEntryId);
+  $scope.timeEntry = angular.copy(getTimeEntry($state.params.timeEntryId));
+
+  $scope.save = function(){
+    updateTimeEntry($scope.timeEntry);
+    $state.go('TimeEntryHistory');
+  }
 });
 
 app.run(function($ionicPlatform) {
