@@ -1,5 +1,8 @@
 <ion-view view-title="TimeEntryHistory">
 	<ion-content ng-controller="TimeEntriesCtrl" class="padding">
+		<div class="padding">
+			<a href="#/addTimeEntry" class="button button-block button-calm"> New Note</a>
+		</div>
 		<div class="list">
 				<a href="#/timeEntryDetails/{{timeEntry.Id}}" class="item" ng-repeat="timeEntry in timeEntries">
 					<h2>{{timeEntry.Date}}</h2>

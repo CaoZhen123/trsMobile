@@ -7,7 +7,12 @@ app.config(function($stateProvider, $urlRouterProvider){
   $stateProvider.state('addTimeEntry',{
 
       url:'/addTimeEntry',
-      templateUrl: 'templates/addTimeEntry.html' 
+      views:{
+        'tab-TimeEntryHistory':{
+          templateUrl: 'templates/timeEntryDetails.html',
+          controller:"AddTimeEntryCtrl"
+        }
+      },
   });
 
   $stateProvider.state('TimeEntryHistory',{
@@ -15,9 +20,9 @@ app.config(function($stateProvider, $urlRouterProvider){
       url:'/TimeEntryHistory',
       views:{
         'tab-TimeEntryHistory':{
-          templateUrl: 'templates/TimeEntryHistory.html'
-        },
-        controller:'TimeEntriesCtrl'
+          templateUrl: 'templates/TimeEntryHistory.html',
+          controller:'TimeEntriesCtrl'
+        }
       }
   });
 
@@ -25,13 +30,14 @@ app.config(function($stateProvider, $urlRouterProvider){
       url:'/timeEntryDetails/:timeEntryId',
       views:{
         'tab-TimeEntryHistory':{
-          templateUrl: 'templates/timeEntryDetails.html'
+          templateUrl: 'templates/timeEntryDetails.html',
+          controller:"TimeEntryDetailsCtrl"
         }
+        
       },
   });
 
   $stateProvider.state('settings',{
-
       url:'/settings',
       views:{
         'tab-settings':{
@@ -43,33 +49,7 @@ app.config(function($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/TimeEntryHistory');
 });
 
-var  timeEntries = [
-
-    {
-      Id:'0',
-      Date:'1 Jan 2016',
-      Project:'First Project',
-      WorkTime:'3',
-      Comment:'123'
-
-    },
-    {
-      Id:'1',
-      Date:'2 Jan 2016',
-      Project:'Second Project',
-      WorkTime:'3',
-      Comment:'123'
-
-    },
-    {
-      Id:'2',
-      Date:'3 Jan 2016',
-      Project:'Third Project',
-      WorkTime:'3',
-      Comment:'123'
-
-    }
-  ];
+var  timeEntries = [];
 
   function getTimeEntry(timeEntryId){
       for(var i = 0; i < timeEntries.length; i++){
@@ -90,6 +70,11 @@ var  timeEntries = [
       return undefined;
   }
 
+  function createTimeEntry(timeEntry){
+
+    timeEntries.push(timeEntry);
+  }
+
 app.controller('TimeEntriesCtrl', function($scope){
 
   $scope.timeEntries = timeEntries;
@@ -101,6 +86,23 @@ app.controller('TimeEntryDetailsCtrl', function($scope, $state){
 
   $scope.save = function(){
     updateTimeEntry($scope.timeEntry);
+    $state.go('TimeEntryHistory');
+  }
+});
+
+app.controller('AddTimeEntryCtrl', function($scope, $state){
+
+  $scope.timeEntry = {
+
+      Id:'',
+      Date:'',
+      Project:'',
+      WorkTime:'',
+      Comment:''  
+    };
+
+  $scope.save = function(){
+    createTimeEntry($scope.timeEntry);
     $state.go('TimeEntryHistory');
   }
 });
