@@ -1,5 +1,27 @@
 <ion-view view-title="addTimeEntry">
 	<ion-content class="padding">
-		addTimeEntry
+		<div class="list card">
+			<label class="item item-input">
+    			<input type="text" placeholder="Date">
+ 			</label>
+ 			<label class="item item-input">
+    			<input type="text" placeholder="Project">
+ 			</label>
+ 			<label class="item item-input">
+    			<input type="text" placeholder="User">
+ 			</label>
+ 			<label class="item item-input">
+    			<input type="text" placeholder="WorkTime">
+ 			</label>
+ 			<label class="item item-input">
+    			<input type="text" placeholder="Comment">
+ 			</label>
+ 			<label class="item item-input">
+    			<input type="text" placeholder="Status">
+ 			</label>
+		</div>
+		<div class="padding">
+			<button class="button button-block button-positive" ng-click="save()">Save</button>
+		</div>
 	</ion-content>
 </ion-view>

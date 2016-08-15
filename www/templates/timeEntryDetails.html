@@ -1,5 +1,21 @@
 <ion-view view-title="Details">
-	<ion-content class="padding">
-		Here are the details
+	<ion-content class="padding" ng-controller="TimeEntryDetailsCtrl">
+		<div class="list card">
+			<div class="item item-input">
+				<input type="text" ng-model= "timeEntry.Id">
+			</div>
+			<div class="item item-input">
+				<input type="text" ng-model="timeEntry.Date">
+			</div>
+			<div class="item item-input">
+				<input type="text" ng-model="timeEntry.Project">
+			</div>
+			<div class="item item-input">
+				<input type="text" ng-model="timeEntry.WorkTime">
+			</div>
+			<div class="item item-input">
+				<textarea rows="5" ng-model="timeEntry.Comment"></textarea>
+			</div>
+		</div>
 	</ion-content>
-</ion-view>
+</ion-view>ss

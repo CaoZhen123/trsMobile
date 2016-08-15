@@ -1,5 +1,10 @@
 <ion-view view-title="TimeEntryHistory">
-	<ion-content class="padding">
-		TimeEntryHistory
+	<ion-content ng-controller="TimeEntriesCtrl" class="padding">
+		<div class="list">
+				<a href="#/timeEntryDetails/{{timeEntry.Id}}" class="item" ng-repeat="timeEntry in timeEntries">
+					<h2>{{timeEntry.Date}}</h2>
+					<p>Work time: {{timeEntry.WorkTime}}</p>
+				</a>
+		</div>
 	</ion-content>
 </ion-view>
